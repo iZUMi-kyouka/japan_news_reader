@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        
+        <base data-trunk-public-url/>
+        <link data-trunk rel="copy-dir" href="./icons"/>
+        <link data-trunk rel="copy-dir" href="./styles"/>
+        <link data-trunk rel="copy-dir" href="./scripts"/>
+
+        <link rel="preload" href="icons/loading.svg" as="image"/>
+
+        <link rel="stylesheet" href="./styles/styles.css"/>
+        <link rel="stylesheet" href="./styles/navbar.css"/>
+        <link rel="stylesheet" href="./styles/main.css"/>
+        <link rel="stylesheet" href="./styles/left-menu.css"/>
+    </head>
+    <body>
+        <div id="initial-loading" style="display: flex; justify-content: center; align-items: center; width: 100vw; height: 100vh; background-color: light-dark(#fff, #020202);">
+            <img src="./icons/loading.svg" id="loading-spinner"/>
+        </div>
+    </body>
+</html>

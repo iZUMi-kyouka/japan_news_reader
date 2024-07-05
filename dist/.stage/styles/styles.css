@@ -1,0 +1,128 @@
+:root {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color-scheme: light dark;
+    --bg-clr: light-dark(#fff, #020202);
+    --bg-level1: light-dark(#ddd, #111);
+    --bg-level2: light-dark(#bbb, #333);
+    --bg-level3: light-dark(#999, #555);
+    --text-clr: #000;
+    --btn-highlight: #ddd;
+    --modal-backdrop: rgba(0, 0, 0, 0.6);
+    --dropdown-fs: 0.8rem;
+    --shadow-clr: #333;
+}
+
+/* html {
+    width: 100vw;
+    max-width: 100vw;
+} */
+
+button {
+    background: none;
+    border: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--bg-level2);
+}
+
+button:active {
+    background-color: var(--bg-level3);
+}
+
+html[data-theme="light"] {
+    color-scheme: light;
+    --bg-clr: #fff;
+    --bg-level1: #ddd;
+    --bg-level2: #bbb;
+    --bg-level3: #999;
+    --text-clr: #000;
+    --btn-highlight: #ddd;
+    img.ui-icon {
+        filter: unset !important;
+    }
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --bg-clr: #020202;
+    --bg-level1: #111;
+    --bg-level2: #333;
+    --bg-level3: #555;
+    --text-clr: #ddd;
+    --btn-highlight: #777;
+    --modal-backdrop: rgba(0, 0, 0.6);
+    .btn-with-img {
+        filter: invert(1);
+    }
+
+    img.ui-icon {
+        filter: invert(1) !important;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .nb-btn__icon {
+        filter: invert(1);
+    }
+}
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* html {
+    scrollbar-width: none;
+} */
+
+body {
+    background-color: var(--bg-clr);
+    scrollbar-width: none;
+}
+
+img[nowloading] {
+    opacity: 0;
+}
+
+.overlay-shadow {
+    box-shadow: 0 0 3px 0.01px #b1b1b1;
+}
+
+#loading-spinner {
+    margin: 0 auto;
+}
+
+/* #region: utility classes */
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.cursor-ptr {
+    cursor: pointer;
+}
+
+.link-deco:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100vh - 6rem);
+}
+/* #endregion */

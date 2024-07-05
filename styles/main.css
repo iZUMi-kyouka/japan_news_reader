@@ -1,0 +1,234 @@
+#main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    background-color: var(--bg-clr);
+
+    min-height: calc(100vh - 6rem);
+    width: calc(100vw - 1rem);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    overflow: hidden;
+
+    position: relative;
+    right: -3rem;
+    opacity: 0;
+    transition: right 0.2s ease-out,
+                opacity 0.2s ease-out;
+}
+
+#main-content[active] {
+    right: 0;
+    opacity: 1;
+    transition: right 0.3s ease-out,
+                opacity 0.3s ease-out;
+}
+
+article.news-article {
+    padding: 0.35rem;
+    /* outline: red solid 1px; */
+    width: 100%;
+    border-bottom: 1px solid var(--bg-level3);
+}
+
+article.news-article:hover {
+    background-color: var(--bg-level1);
+}
+
+article.news-article:last-of-type {
+    border-color: none;
+}
+
+span.news-article__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+span.news-article__date {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #ccc;
+}
+
+div.main-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
+
+    margin: 0 auto;
+    width: calc(100vw - 1rem);
+    max-width: 800px;
+    min-height: calc(100vh - 6rem);
+}
+
+#article-wrapper {
+    max-width: 1000px;
+    padding: 2rem 2rem;
+
+    opacity: 0;
+    position: relative;
+    right: -3rem;
+}
+
+#article-wrapper[active] {
+    opacity: 1;
+    right: 0;
+    transition: opacity 0.3s ease-out, right 0.3s ease-out;
+}
+
+h2.article__title {
+    font-size: 2.5rem;
+    padding: 0 0 2rem 0;
+}
+
+p.article__p {
+    font-size: 1.1rem;
+    padding: 1ch 0;
+}
+
+div.article__title-image {
+    position: relative;
+    padding-bottom: 56.25%;
+
+    img {
+        background-color: var(--bg-level1);
+        position: absolute;
+        width: 100%;
+        border-radius: 5px;
+        z-index: 50;
+    }
+}
+
+.article__body-image {
+    position: relative;
+    padding-bottom: 56.25%;
+    margin: 2rem 0 0.5rem 0;
+
+    img {
+        background-color: var(--bg-level1);
+        position: absolute;
+        width: 100%;
+        border-radius: 5px;
+        z-index: 50;
+    }
+
+    /* figcaption {
+        position: absolute;
+        bottom: -2rem;
+
+        font-style: italic;
+        font-size: 1.05rem;
+    } */
+}
+
+figcaption {
+    font-style: italic;
+    font-size: 1.025rem;
+    margin-bottom: 1rem;
+}
+
+.article__body-image[loaded] {
+    img {
+        position: relative;
+    }
+
+    padding-bottom: unset;
+}
+
+p.article__description {
+    font-weight: 700;
+    font-size: 1.15rem;
+    padding: 1rem 0 2rem 0;
+}
+
+/* Loading */
+.img-loading-placeholder{
+    position: absolute;
+    z-index: 44;
+    overflow: hidden;
+    
+    background-color: var(--bg-level1);
+    border-radius: 5px;
+    width: 100%;
+    padding-bottom: 56.25%;
+}
+
+.activity{
+    position: absolute;
+    left: -45%;
+    height: 100%;
+    width: 45%;
+    background-image: linear-gradient(to left, var(--bg-level1), var(--bg-level2), var(--bg-level3), var(--bg-level2), var(--bg-level1));
+    /* background-image: -moz-linear-gradient(to left, var(--bg-level1), var(--bg-level2), var(--bg-level3), var(--bg-level2), var(--bg-level1)); */
+    /* background-image: -webkit-linear-gradient(to left, var(--bg-level1), var(--bg-level2), var(--bg-level3), var(--bg-level2), var(--bg-level1)); */
+    animation: loading 1s infinite;
+    z-index: 45;
+}
+  
+@keyframes loading {
+    0%{
+        left: -45%;
+    }
+    100%{
+        left: 100%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    html {
+        font-size: 0.95em;
+    }
+
+    h2.article__title {
+        font-size: 1.8rem;
+        padding: 0 0 0.9rem 0;
+    }
+    
+    p.article__p {
+        /* font-size: 1rem; */
+        line-height: 1.4rem;
+    }
+    
+    #main-content {
+        gap: 0.75rem;
+        padding: 0.75rem 0.4rem;
+    }
+
+    article.article-wrapper {
+        padding: 1.5rem 1rem !important;
+    }
+
+    .article__body-image {
+        position: relative;
+        padding-bottom: 56.25%;
+        margin: 1rem 0 0.5rem 0;
+    
+        img {
+            background-color: var(--bg-level1);
+            position: absolute;
+            width: 100%;
+            border-radius: 5px;
+            z-index: 50;
+        }
+    
+        /* figcaption {
+            position: absolute;
+            bottom: -2rem;
+    
+            font-style: italic;
+            font-size: 1.05rem;
+        } */
+    }
+
+    figcaption {
+        font-style: italic;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+}
+

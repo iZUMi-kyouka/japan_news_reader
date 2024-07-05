@@ -1,0 +1,62 @@
+#left-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -8rem;
+    
+    padding: 2rem;
+    padding-top: 4rem;
+    gap: 1rem;
+
+    width: 18rem;
+    height: 100dvh;
+
+    img {
+        max-width: 50%;
+    }
+
+    background-color: var(--bg-level1);
+}
+
+#left-menu > * {
+    max-width: 14rem;
+}
+
+#left-menu[active] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 1000;
+    left: 0;
+}
+
+#left-menu__news-provider {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #eee;
+    border-radius: 2px;
+}
+
+#left-menu-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    img {
+            
+    }
+}
+
+#yomiuri-logo-left-menu, #yomiuri-logo, #nhk-logo, #nhk-logo-left-menu {
+    img {
+        filter: brightness(50);
+    }
+}
+
+#yomiuri-logo-left-menu, #nhk-logo-left-menu {
+    height: 4rem;
+    max-width: 18rem;
+    width: 100%;
+}
