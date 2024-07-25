@@ -5,7 +5,14 @@
     --bg-level1: light-dark(#ddd, #111);
     --bg-level2: light-dark(#bbb, #333);
     --bg-level3: light-dark(#999, #555);
-    --text-clr: #000;
+    --text-clr: light-dark(#000, #fff);
+    --text-clr-fade1: light-dark(#222, #ddd);
+    --text-clr-fade2: light-dark(#444, #bbb);
+    --text-clr-fade3: light-dark(#555, #aaa);
+    --text-clr-fade4: light-dark(#666, #888);
+    --text-clr-fade5: light-dark(#777, #777);
+    --text-clr-fade6: light-dark(#888, #666);
+    --text-clr-fade7: light-dark(#ccc, #333);
     --btn-highlight: #ddd;
     --modal-backdrop: rgba(0, 0, 0, 0.6);
     --dropdown-fs: 0.8rem;
@@ -19,17 +26,28 @@
 
 button {
     background: none;
+    outline: none;
     border: none;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.25s ease-out;
 }
 
-button:hover {
-    background-color: var(--bg-level2);
+@media (hover: hover) {
+    button {
+        transition: background-color 0.1s ease-out;
+    }
+
+    button:hover {
+        background-color: var(--bg-level1);
+        /* transition: background-color 0.1s ease-out; */
+    }
 }
 
 button:active {
-    background-color: var(--bg-level3);
+    background-color: var(--bg-level2);
+    transition: background-color 0.25s ease-out;
 }
 
 html[data-theme="light"] {
@@ -78,13 +96,19 @@ html[data-theme="dark"] {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* html {
-    scrollbar-width: none;
-} */
+html {
+    /* scrollbar-width: none; */
+    overscroll-behavior: none;
+}
 
 body {
     background-color: var(--bg-clr);
     scrollbar-width: none;
+    overscroll-behavior: none;
+}
+
+body[no-scroll] {
+    overflow: hidden;
 }
 
 img[nowloading] {
@@ -123,6 +147,12 @@ img[nowloading] {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: calc(100vh - 6rem);
+    height: calc(100dvh - 6rem);
+}
+
+@media (max-width: 800px) {
+    .loading-container {
+        height: calc(100dvh - 5rem);
+    }
 }
 /* #endregion */

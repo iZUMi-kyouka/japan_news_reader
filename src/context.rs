@@ -9,16 +9,15 @@ pub enum NewsCategory {
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NewsView {
+pub enum NewsProvider {
     NHK,
-    Yomiuiri
+    Yomiuri
 }
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct AppCtx {
-    pub news_view: NewsView,
+    pub news_provider: NewsProvider,
     pub active_news: NewsCategory,
-    pub news_metadata: Option<HashMap<String, String>>
 }
 
 impl AppCtx {
@@ -29,9 +28,9 @@ impl AppCtx {
         }
     }
 
-    pub fn update_news_metadata_to(self, news_metadata: Option<HashMap<String, String>>) -> Self {
+    pub fn update_news_provider(self, n: NewsProvider) -> Self {
         Self {
-            news_metadata,
+            news_provider: n,
             ..self
         }
     }

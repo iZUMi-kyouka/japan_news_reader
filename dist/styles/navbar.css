@@ -1,5 +1,6 @@
 #navbar-top, #navbar-bottom {
     backdrop-filter: blur(10px) brightness(0.375);
+    background-color: var(--bg-clr);
 }
 
 
@@ -15,13 +16,27 @@
     
     padding: 0.25rem 0.5rem;
     height: 3rem;
+    overflow-x: auto;
+    overflow-y: hidden;
     /* outline: red solid 1px; */
 }
 
 @media screen and (max-width: 800px) {
     #navbar-bottom {
-        justify-content: space-around;
+        justify-content: flex-start;
         gap: unset;
+    }
+
+    /* .nb-bottom-btn {
+        min-width: 85px;
+    } */
+
+    #yomiuri-logo > img, #nhk-logo > img {
+        height: 18px !important;
+    }
+
+    #left-menu-button > img, #theme-button > img {
+        height: 24px !important;
     }
 }
 
@@ -49,7 +64,17 @@
     #navbar-top, #navbar-bottom {
         background-color: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(10px);
+        scrollbar-width: 1px;
     }
+}
+
+div.active-indicator {
+    position: absolute;
+    bottom: 0;
+    width: 0px;
+    height: 2px;
+    background-color: red;
+    transition: width 0.2s ease-out;
 }
 
 .nb-btn {
@@ -57,12 +82,73 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+    position: relative;   
     padding: 0.25rem;
 
     background: none;
     border: none;
     cursor: pointer;
+
+    img {
+        max-height: 100%;
+        /* padding-bottom: 10px; */
+    }
+
+    /* border-radius: 0; */
+    /* border-bottom: 2px solid transparent; */
+}
+
+.nb-bottom-btn {
+    padding: 0.25rem 1.3rem;
+    transition: color 0.2s ease-out, font-weight 0.2s ease-out, filter 0.5s ease-out, background-color 0.25s ease-out;
+
+    img {
+        margin-bottom: 115%;
+        margin-left: 150%;
+        margin-right: 150%;
+    }
+}
+
+.nb-bottom-btn[active] {
+    transition: color 0.2s ease-out, font-weight 0.2s ease-out, filter 0.5s ease-out, background-color 0.25s ease-out;
+}
+
+@media screen and (max-width: 800px) {
+    .nb-bottom-btn {
+        padding: 0.5rem 2.5rem;
+        /* padding-bottom: 0.45rem; */
+    
+        img {
+            margin-bottom: 100%;
+            margin-left: 100%;
+            margin-right: 100%;
+        }
+    }
+
+    .nb-btn__text {
+        position: absolute;
+        bottom: 0.4rem !important;
+    }
+    
+
+    div.active-indicator {
+        bottom: 0.05rem;
+    }
+}
+
+.nb-btn[active] {
+    img {
+        filter: brightness(0) saturate(100%) invert(16%) sepia(82%) saturate(7479%) hue-rotate(358deg) brightness(93%) contrast(115%);
+    }
+
+    color: red;
+    font-weight: bold;
+    /* border-bottom: 2px solid red; */
+
+    div.active-indicator {
+        width: 100%;
+        transition: width 0.2s ease-out;
+    }
 }
 
 .nb-btn-svg {
@@ -78,17 +164,13 @@
     cursor: pointer;
 }
 
-.nb-btn[active] {
-    img {
-        filter: brightness(0) saturate(100%) invert(16%) sepia(82%) saturate(7479%) hue-rotate(358deg) brightness(93%) contrast(115%);
-    }
-
-    color: red;
-    font-weight: bold;
-}
-
 .nb-btn__icon {
     height: 1rem;
+}
+
+.nb-btn__text {
+    position: absolute;
+    bottom: 0.25rem;
 }
 
 #nhk-logo {
@@ -110,8 +192,8 @@
 }
 
 #theme-dropdown {
-    position: absolute;
-    top: 3rem;
+    position: fixed;
+    top: -194px;
     right: 1.75rem;
 
     display: none;
@@ -127,10 +209,80 @@
     width: 9rem;
     padding: 0.5rem;
     box-shadow: 0 0 3px 0.1px var(--bg-level3);
+    transition: top 0.2s ease-out, opacity 0.2s ease-out;
+    z-index: 99;
+    opacity: 0;
+}
+
+@media screen and (max-width: 800px) {
+    #theme-dropdown {
+        top: 2rem;
+    }
+}
+
+@keyframes theme-dropdown-opening {
+    0% {
+        opacity: 0;
+        top: -194px;
+    }
+
+    100% {
+        opacity: 1;
+        top: 3rem;
+    }
+}
+
+@keyframes theme-dropdown-closing {
+    0% {
+        opacity: 1;
+        top: 3rem;
+    }
+
+    100% {
+        opacity: 0;
+        top: -194px;
+    }
+}
+
+@keyframes theme-icon-opening {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes theme-icon-closing {
+    0% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 #theme-dropdown[active] {
     display: flex;
+    animation: theme-dropdown-opening 200ms forwards;
+}
+
+#theme-button[opening] > img {
+    animation: theme-icon-opening 200ms forwards;
+}
+
+#theme-button[active] > img {
+    transform: rotate(180deg);
+}
+
+#theme-dropdown[closing] {
+    animation: theme-dropdown-closing 200ms forwards;
+}
+
+#theme-button[closing] > img {
+    animation: theme-icon-closing 200ms forwards;
 }
 
 .theme-dropdown__item {
@@ -157,7 +309,8 @@
     /* outline: red solid 1px; */
     span {
         position: relative;
-        top: 0.3rem;
+        top: 0.4rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -178,5 +331,8 @@
     img.ui-icon {
         filter: invert(1);
     }
-}
 
+    #subgenre-button > img {
+        filter: invert(1);
+    }
+}

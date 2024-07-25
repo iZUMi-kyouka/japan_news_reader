@@ -1,53 +1,107 @@
 #left-menu {
     display: none;
+    z-index: 1000;
     position: fixed;
     top: 0;
-    left: -8rem;
+    left: -18rem;
     
     padding: 2rem;
-    padding-top: 4rem;
+    padding-top: 4.5rem;
     gap: 1rem;
 
     width: 18rem;
     height: 100dvh;
 
+    background-color: var(--bg-clr);
+
+    flex-direction: column;
+    z-index: 1000;
+    gap: 0.5rem;
+
     img {
         max-width: 50%;
     }
-
-    background-color: var(--bg-level1);
 }
 
 #left-menu > * {
     max-width: 14rem;
 }
 
+@keyframes left-menu-opening {
+    0% { left: -18rem; }
+    100% { left: 0rem; }
+}
+
+@keyframes left-menu-closing {
+    0% { left: 0rem; }
+    100% { left: -18rem; }
+}
+
+@keyframes left-menu-bg-opening {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes left-menu-bg-closing {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
 #left-menu[active] {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    z-index: 1000;
+    animation: left-menu-opening 200ms forwards;
+}
+
+#left-menu[closing] {
+    animation: left-menu-closing 200ms forwards;
+}
+
+#left-menu-bg {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    top: 0;
     left: 0;
+    opacity: 0;
+
+    background-color: rgba(0, 0, 0, 0.75);
+
+    min-width: 100dvw;
+    min-height: 100dvh;
+}
+
+#left-menu-bg[opening] {
+    display: block;
+    animation: left-menu-bg-opening 200ms forwards;
+}
+
+#left-menu-bg[active] {
+    display: block;
+    opacity: 1;
+}
+
+#left-menu-bg[closing] {
+    display: block;
+    animation: left-menu-bg-closing 200ms forwards;
+}
+
+#left-menu-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 33px;
+    border: 1px solid var(--text-clr-fade4);
+    border-radius: 2px;
 }
 
 #left-menu__news-provider {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding: 0.5rem;
-    border: 1px solid #eee;
+    /* padding: 0.5rem; */
+    border: 1px solid var(--text-clr-fade4);
     border-radius: 2px;
 }
 
-#left-menu-close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-
-    img {
-            
-    }
-}
 
 #yomiuri-logo-left-menu, #yomiuri-logo, #nhk-logo, #nhk-logo-left-menu {
     img {
@@ -59,4 +113,11 @@
     height: 4rem;
     max-width: 18rem;
     width: 100%;
+}
+
+.left-menu__item__title {
+    background: light-dark(#000, #fff);
+    color: light-dark(#fff, #020202);
+    padding: 0.5ch;
+    padding-left: 1ch;
 }

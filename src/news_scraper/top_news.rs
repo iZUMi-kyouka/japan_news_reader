@@ -1,10 +1,10 @@
 use gloo::console::log;
 
-use crate::{model::*, BASE_URL};
+use crate::{model::*, NHKAPI_BASE_URL};
 
 pub async fn retrieve_top_news(p: u8) -> Result<Vec<NHKArticleMeta>, String> {
-    log!("fetching top news...");
-    let url = format!("{}{}{}", *BASE_URL, "/api/v1/nhkreader/top/", p);
+    // log!("fetching top news...");
+    let url = format!("{}/{}", *NHKAPI_BASE_URL, "top");
     // Retrieve TOP news front page
 
     let html_news_list = reqwasm::http::Request::get(&url)
